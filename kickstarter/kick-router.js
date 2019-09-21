@@ -51,23 +51,56 @@ router.post('/user/:id', (req, res) => {
     let kickstarter = req.body;
     let check = req.params;
     console.log(check.id)
-    console.log(kickstarter.kickstarter_id)
-    if (check.id == kickstarter.kickstarter_id) {
+    console.log(kickstarter.user_id)
+    if (check.id == kickstarter.user_id) {
         kick.add(kickstarter)
             .then(saved => { res.status(201).json(saved) })
             .catch(error => { res.status(500).json(error) })
     } else {
-        res.status(401).json({ message: 'The UserID that you sent much match the kickstarter_id' })
+        res.status(401).json({ message: 'The UserID that you sent much match the user_id' })
     }
 });
 
+router.get('/test/test', (req, res) => {
+    kick.getTasks()
+        .then(e => {
+            res.status(200).json(e)
+        })
+        .catch(err => {
+            res.json({ message: 'What the hell' })
+        })
+})
+
+
 // Adds a kickstarter to the user id passed
 router.put('/user/:id', (req, res) => {
+    let { id } = req.params;
+    let updatedUser = req.body;
 
+    // Add some checks, make sure they can't change the kickstarter_id
+    kick.update(id, updatedUser)
+        .then(updated => {
+            res.status(201).json(updated)
+        })
+        .catch(error => {
+            res.status(400).json(error)
+        })
 });
 
 // Adds a kickstarter to the user id passed
 router.delete('/user/:id', (req, res) => {
+    let { id } = req.params;
 
+    kick.remove(id)
+        .then(event => {
+            if (event) {
+                res.status(204).json({ message: `Kickstarter ID:${id} removed` })
+            } else {
+                res.status(404).json({ message: 'Kickstarter not found' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'The Kickstarter could not be removed.' })
+        })
 });
 module.exports = router;
