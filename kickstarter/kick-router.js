@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const kick = require('./kick-helpers.js')
-
+// Gets all Kickstarters
 router.get('/all', (req, res) => {
     kick.getAll()
         .then(kick => {
@@ -12,6 +12,7 @@ router.get('/all', (req, res) => {
         })
 });
 
+// Grabs a singular Kickstarter
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
@@ -26,10 +27,27 @@ router.get('/:id', (req, res) => {
         .catch(err => {
             res.status(500).json(err)
         })
+})
+
+// Grabs all Kickstarters for a particular User 
+router.get('/user/:id', (req, res) => {
+    const { id } = req.params;
+
+    kick.getKickByUserId(id)
+        .then(kicks => {
+            if (kicks.length) {
+                res.status(200).json(kicks)
+            } else {
+                res.status(404).json({ message: 'Could not find kickstarters with that ID' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
 });
 
-
-router.post('/add/:user_id', (req, res) => {
+// Adds a kickstarter to the user id passed
+router.post('/user/:id', (req, res) => {
 
 });
 

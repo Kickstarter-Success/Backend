@@ -16,6 +16,9 @@ exports.up = function (knex) {
         })
 
         .createTable('kickstarter', data => {
+
+            data.increments();
+
             data
                 .integer('kickstarter_id')
                 .unsigned()
