@@ -14,12 +14,7 @@ exports.up = function (knex) {
                 .string('password', 255)
                 .notNullable();
         })
-        .createTable('test_case', tbl => {
-            tbl.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
 
-            // tbl.increments()
-
-        })
         .createTable('kickstarter', data => {
 
             data.increments()
