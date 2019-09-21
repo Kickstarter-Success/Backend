@@ -3,7 +3,7 @@ exports.up = function (knex) {
     return knex.schema
 
         .createTable('users', users => {
-            users.increments();
+            users.increments('');
 
             users
                 .string('username', 255)
@@ -16,28 +16,34 @@ exports.up = function (knex) {
         })
 
         .createTable('kickstarter', data => {
-            data
-                .integer('kickstarter_id')
-                .unsigned()
-                .references('id')
-                .inTable('users')
-                .onDelete('CASCADE')
-                .onUpdate('CASCADE')
+
+            data.increments()
+
+            data.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
 
             data
-                .string('name')
-
-            data
-                .integer('monetaryGoal')
-
-            data
-                .string('description')
-
-            data
-                .string('campaignLength')
+                .string('campaignName', 128)
+                .notNullable().unique()
 
             data
                 .string('categories')
+                .notNullable()
+
+            data
+                .string('description', 500)
+                .notNullable()
+
+            data
+                .integer('monetaryGoal')
+                .notNullable()
+
+            data
+                .integer('duration')
+                .notNullable()
+
+            data
+                .string('country')
+                .notNullable()
 
         })
 };
