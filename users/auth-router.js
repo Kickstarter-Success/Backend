@@ -40,7 +40,7 @@ router.put('/update/:id', restricted, (req, res) => {
                     })
                     .catch(error => { res.status(400).json(error) })
             } else {
-                console.log("IT hasn't been updated!")
+                res.status(403).json({ message: 'You cannot change the username.' })
             }
         })
         .catch(err => {

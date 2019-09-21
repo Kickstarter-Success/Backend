@@ -25,19 +25,28 @@ exports.up = function (knex) {
                 .onUpdate('CASCADE')
 
             data
-                .string('name')
-
-            data
-                .integer('monetaryGoal')
-
-            data
-                .string('description')
-
-            data
-                .string('campaignLength')
+                .string('campaignName', 128)
+                .notNullable()
 
             data
                 .string('categories')
+                .notNullable()
+
+            data
+                .string('description', 500)
+                .notNullable()
+
+            data
+                .integer('monetaryGoal')
+                .notNullable()
+
+            data
+                .integer('duration')
+                .notNullable()
+
+            data
+                .string('country')
+                .notNullable()
 
         })
 };
