@@ -48,7 +48,26 @@ router.get('/user/:id', (req, res) => {
 
 // Adds a kickstarter to the user id passed
 router.post('/user/:id', (req, res) => {
+    let kickstarter = req.body;
+    let check = req.params;
+    console.log(check.id)
+    console.log(kickstarter.kickstarter_id)
+    if (check.id == kickstarter.kickstarter_id) {
+        kick.add(kickstarter)
+            .then(saved => { res.status(201).json(saved) })
+            .catch(error => { res.status(500).json(error) })
+    } else {
+        res.status(401).json({ message: 'The UserID that you sent much match the kickstarter_id' })
+    }
+});
+
+// Adds a kickstarter to the user id passed
+router.put('/user/:id', (req, res) => {
 
 });
 
+// Adds a kickstarter to the user id passed
+router.delete('/user/:id', (req, res) => {
+
+});
 module.exports = router;

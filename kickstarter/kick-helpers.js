@@ -3,7 +3,8 @@ const db = require('../database/db-config.js')
 module.exports = {
     getAll,
     getKickById,
-    getKickByUserId
+    getKickByUserId,
+    add
 }
 
 function getAll() {
@@ -18,4 +19,13 @@ function getKickByUserId(id) {
 function getKickById(id) {
     return db('kickstarter')
         .where({ id: id })
+}
+
+function add(kickstarter) {
+    return db('kickstarter')
+        .insert(kickstarter, 'id')
+        .then(ids => {
+            const [id] = ids;
+            return getKickById(id);
+        });
 }

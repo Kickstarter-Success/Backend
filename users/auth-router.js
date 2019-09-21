@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const restricted = require('../auth/authenticate-middleware.js')
 const generateToken = require('../auth/generateToken.js')
 const Users = require('./auth-helpers.js')
+const Kick = require('../kickstarter/kick-helpers')
 
 // Show all Users
 router.get('/', restricted, (req, res) => {
@@ -16,8 +17,16 @@ router.get('/', restricted, (req, res) => {
 router.get('/:id', restricted, (req, res) => {
     let { id } = req.params;
 
-    Users.find(id)
-        .then(user => { res.status(201).json(user) })
+    Users.findById(id)
+        .then(user => {
+            let userFull = user;
+            Kick.getKickByUserId(id)
+                .then(kicks => {
+                    userFull.kickstarter = kicks;
+                    res.status(200).json(userFull)
+                })
+
+        })
         .catch(error => { res.status(500).json(error) })
 })
 
