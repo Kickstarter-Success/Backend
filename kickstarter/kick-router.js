@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
 
     kick.getKickById(id)
         .then(kicks => {
-            if (kicks.length) {
+            if (kicks) {
                 res.status(200).json(kicks)
             } else {
                 res.status(404).json({ message: 'Could not find kickstarters with that ID' })
