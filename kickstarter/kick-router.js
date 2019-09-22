@@ -73,11 +73,11 @@ router.get('/test/test', (req, res) => {
 
 
 // Adds a kickstarter to the user id passed
-router.put('/user/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     let { id } = req.params;
     let updatedUser = req.body;
 
-    // Add some checks, make sure they can't change the kickstarter_id
+    // Add some checks, make sure they can't change the user_id
     kick.update(id, updatedUser)
         .then(updated => {
             res.status(201).json(updated)

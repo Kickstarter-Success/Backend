@@ -40,7 +40,7 @@ function add(kickstarter) {
 
 function update(id, load) {
     return db('kickstarter')
-        .where({ id })
+        .where({ id: id })
         .update(load)
 }
 
