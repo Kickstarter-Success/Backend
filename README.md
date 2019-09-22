@@ -357,7 +357,7 @@ Grabbing a single User will also give you their kickstarters.
 
 ```json
 {
-   [
+ [  
     {
         "id": 1,
         "username": "admin",
@@ -392,5 +392,85 @@ Grabbing a single User will also give you their kickstarters.
 ```json
 {
     "message": "Invalid Login or Token Expired."
+}
+```
+
+# _Kickstarter Data_
+
+## Get Requests
+
+
+# Get a single Kickstarter by ID
+
+If you need to Register a User use the following information.
+
+**URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/:id`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+**Data constraints**
+
+```json
+{
+    "username": "[A unique username]",
+    "password": "[password in plain text]"
+}
+```
+
+**Data example**
+
+```json
+{
+    "username": "admin",
+    "password": "password"
+}
+```
+
+## Success Response
+
+**Code** : `201 Created`
+
+**Content example**
+
+The password that is returned is a hash and not a representation of something that you should use.  
+
+```json
+{
+    "id": 1,
+    "user_id": 1,
+    "campaignName": "Test_Project_1",
+    "categories": "Games",
+    "description": "Put the decription here and bla bla bla.",
+    "monetaryGoal": 100000,
+    "duration": 30,
+    "country": "USA"
+}
+```
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "Invalid Login or Token Expired."
+}
+```
+## Error Response
+
+**Condition** : If an invalid ID is used.
+
+**Code** : `404 Not Found`
+
+**Content** :
+
+```json
+{
+    "message": "Could not find kickstarters with that ID"
 }
 ```
