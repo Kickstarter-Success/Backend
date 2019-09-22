@@ -402,11 +402,9 @@ Grabbing a single User will also give you their kickstarters.
 
 # Get a single Kickstarter by ID
 
-If you need to Register a User use the following information.
-
 **URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/:id`
 
-**Method** : `POST`
+**Method** : `GET`
 
 **Auth required** : YES
 
@@ -472,5 +470,254 @@ The password that is returned is a hash and not a representation of something th
 ```json
 {
     "message": "Could not find kickstarters with that ID"
+}
+```
+
+# Get all kickstarters for a single User ID
+
+
+**URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/user/:id`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Data example**
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+[
+    {
+        "id": 1,
+        "user_id": 1,
+        "campaignName": "Test_Project_1",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "USA"
+    },
+    {
+        "id": 2,
+        "user_id": 1,
+        "campaignName": "Test_Project_2",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "CHINA"
+    },
+    {
+        "id": 3,
+        "user_id": 1,
+        "campaignName": "Test_Project_3",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "RUSSIA"
+    },
+    {
+        "id": 4,
+        "user_id": 1,
+        "campaignName": "Test_Project_4",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "JAPAN"
+    }
+]
+```
+
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `404 Not Found`
+
+**Content** :
+
+```json
+{
+    "message": "Could not find kickstarters with that ID"
+}
+```
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "Invalid Login or Token Expired."
+}
+```
+
+# Get all Kickstarters
+
+**URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/all`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Data example**
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+[
+    {
+        "id": 1,
+        "user_id": 1,
+        "campaignName": "Test_Project_1",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "USA"
+    },
+    {
+        "id": 2,
+        "user_id": 2,
+        "campaignName": "Test_Project_2",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "CHINA"
+    },
+    {
+        "id": 3,
+        "user_id": 3,
+        "campaignName": "Test_Project_3",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "RUSSIA"
+    },
+    {
+        "id": 4,
+        "user_id": 4,
+        "campaignName": "Test_Project_4",
+        "categories": "Games",
+        "description": "Put the decription here and bla bla bla.",
+        "monetaryGoal": 100000,
+        "duration": 30,
+        "country": "JAPAN"
+    }
+]
+```
+
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "Invalid Login or Token Expired."
+}
+```
+
+# Add a Kickstart
+
+It is important to look at how the data is sent. You must include a vaid user_id as a part of the data and in the URL request. 
+
+**URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/user/:id`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Data constraints**
+
+```json
+        { 
+	        "user_id": [an ID that matches an existing user],
+	        "campaignName": [Unique Kickstarter Name],
+	        "monetaryGoal": [Interger],
+	        "description": [String],
+	        "duration": [Interger],
+	        "categories": [String],
+	        "country": [String] 
+        }
+
+```
+
+**Content example**
+
+```json
+        { 
+	        "user_id": 5,
+	        "campaignName": "Test_Project_8",
+	        "monetaryGoal": 100000,
+	        "description": "Put the decription here and bla bla bla.",
+	        "duration": "30",
+	        "categories": "Games",
+	        "country": "JAPAN" 
+        }
+```
+
+## Success Response
+
+**Code** : `201 Created`
+
+**Content example**
+
+```json
+{
+    "id": 6,
+    "user_id": 5,
+    "campaignName": "Test_Project_8",
+    "categories": "Games",
+    "description": "Put the decription here and bla bla bla.",
+    "monetaryGoal": 100000,
+    "duration": 30,
+    "country": "JAPAN"
+}
+```
+
+## Error Response
+
+**Condition** : If Invalid user ID is given
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "The UserID that you sent much match the user_id"
+}
+```
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "Invalid Login or Token Expired."
 }
 ```
