@@ -1,4 +1,32 @@
 # Backend
+## Users
+Get User by ID  
+```https://kickstarter-backend.herokuapp.com/api/auth/:id```  
+Get All Users  
+```https://kickstarter-backend.herokuapp.com/api/auth/```  
+Register A User  
+```https://kickstarter-backend.herokuapp.com/api/auth/register```  
+Login A User  
+```https://kickstarter-backend.herokuapp.com/api/auth/login```  
+Change A Password  
+```https://kickstarter-backend.herokuapp.com/api/auth/update/:id```  
+Remove A User  
+```https://kickstarter-backend.herokuapp.com/api/auth/delete/:id```  
+
+## Kickstarter
+Get A Single Kickstarter by ID  
+```https://kickstarter-backend.herokuapp.com/api/kickstarter/:id```  
+Get A Users Kickstarter by ID  
+```https://kickstarter-backend.herokuapp.com/api/kickstarter/user/:id```  
+Get All Kickstarters  
+```https://kickstarter-backend.herokuapp.com/api/kickstarter/all```  
+Adds a Kickstarter when Given a User_id  
+```https://kickstarter-backend.herokuapp.com/api/kickstarter/user/:id```  
+Update A Single Kickstarter by ID  
+```https://kickstarter-backend.herokuapp.com/api/kickstarter/:id```  
+Removes A Single Kickstarter by ID  
+```https://kickstarter-backend.herokuapp.com/api/kickstarter/:id```  
+
 
 
 # Register
