@@ -26,7 +26,7 @@ function getKickByUserId(id) {
 
 function getKickById(id) {
     return db('kickstarter')
-        .where({ id: id })
+        .where({ id: id }).first()
 }
 
 function add(kickstarter) {
