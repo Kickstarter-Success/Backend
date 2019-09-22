@@ -799,10 +799,9 @@ None, just send the request while logged in.
 
 **Content example**
 
-```
-0 - [Means nothing was changed]
-1 - [Means something was changed]
-```
+**Condition** : If Successful
+
+**Code** : `204`
 
 ## Error Response
 
@@ -814,7 +813,7 @@ None, just send the request while logged in.
 
 ```json
 {
-    "message": "The UserID that you sent much match the user_id"
+    "message": "Kickstarter not found"
 }
 ```
 
