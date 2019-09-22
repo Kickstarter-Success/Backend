@@ -643,7 +643,7 @@ It is important to look at how the data is sent. You must include a vaid user_id
 
 **URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/user/:id`
 
-**Method** : `GET`
+**Method** : `POST`
 
 **Auth required** : YES
 
@@ -674,6 +674,84 @@ It is important to look at how the data is sent. You must include a vaid user_id
 	        "categories": "Games",
 	        "country": "JAPAN" 
         }
+```
+
+## Success Response
+
+**Code** : `201 Created`
+
+**Content example**
+
+```json
+{
+    "id": 6,
+    "user_id": 5,
+    "campaignName": "Test_Project_8",
+    "categories": "Games",
+    "description": "Put the decription here and bla bla bla.",
+    "monetaryGoal": 100000,
+    "duration": 30,
+    "country": "JAPAN"
+}
+```
+
+## Error Response
+
+**Condition** : If Invalid user ID is given
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "The UserID that you sent much match the user_id"
+}
+```
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "Invalid Login or Token Expired."
+}
+```
+
+# Update a Kickstart
+
+Updating is just like Posting except that you need to send the KICKSTARTER ID in the URL and not the user you want to attach it to.
+
+**URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/:id`
+
+**Method** : `PUT`
+
+**Auth required** : YES
+
+**Data constraints**
+
+```json
+        { 
+	        "user_id": [an ID that matches an existing user],
+	        "campaignName": [Unique Kickstarter Name],
+	        "monetaryGoal": [Interger],
+	        "description": [String],
+	        "duration": [Interger],
+	        "categories": [String],
+	        "country": [String] 
+        }
+
+```
+
+**Content example**
+
+```
+0 - [Means nothing was changed]
+1 - [Means something was changed]
 ```
 
 ## Success Response
