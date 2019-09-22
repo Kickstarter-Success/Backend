@@ -754,30 +754,11 @@ Updating is just like Posting except that you need to send the KICKSTARTER ID in
 1 - [Means something was changed]
 ```
 
-## Success Response
-
-**Code** : `201 Created`
-
-**Content example**
-
-```json
-{
-    "id": 6,
-    "user_id": 5,
-    "campaignName": "Test_Project_8",
-    "categories": "Games",
-    "description": "Put the decription here and bla bla bla.",
-    "monetaryGoal": 100000,
-    "duration": 30,
-    "country": "JAPAN"
-}
-```
-
 ## Error Response
 
 **Condition** : If Invalid user ID is given
 
-**Code** : `401 Unauthorized`
+**Code** : `404 Not Found`
 
 **Content** :
 
@@ -786,6 +767,57 @@ Updating is just like Posting except that you need to send the KICKSTARTER ID in
     "message": "The UserID that you sent much match the user_id"
 }
 ```
+
+## Error Response
+
+**Condition** : If Token is missing
+
+**Code** : `401 Unauthorized`
+
+**Content** :
+
+```json
+{
+    "message": "Invalid Login or Token Expired."
+}
+```
+
+
+# Delete a Kickstart
+
+Updating is just like Posting except that you need to send the KICKSTARTER ID in the URL and not the user you want to attach it to.
+
+**URL** : `https://kickstarter-backend.herokuapp.com/api/kickstarter/:id`
+
+**Method** : `DELETE`
+
+**Auth required** : YES
+
+**Data constraints**
+
+None, just send the request while logged in.
+
+**Content example**
+
+```
+0 - [Means nothing was changed]
+1 - [Means something was changed]
+```
+
+## Error Response
+
+**Condition** : If Invalid user ID is given
+
+**Code** : `404 Not Found`
+
+**Content** :
+
+```json
+{
+    "message": "The UserID that you sent much match the user_id"
+}
+```
+
 ## Error Response
 
 **Condition** : If Token is missing

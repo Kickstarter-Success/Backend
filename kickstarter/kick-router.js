@@ -61,18 +61,18 @@ router.post('/user/:id', (req, res) => {
     }
 });
 
-router.get('/test/test', (req, res) => {
-    kick.getTasks()
-        .then(e => {
-            res.status(200).json(e)
-        })
-        .catch(err => {
-            res.json({ message: 'What the hell' })
-        })
-})
+// router.get('/test/test', (req, res) => {
+//     kick.getTasks()
+//         .then(e => {
+//             res.status(200).json(e)
+//         })
+//         .catch(err => {
+//             res.json({ message: 'What the hell' })
+//         })
+// })
 
 
-// Adds a kickstarter to the user id passed
+// Updates a kickstarter
 router.put('/:id', (req, res) => {
     let { id } = req.params;
     let updatedUser = req.body;
@@ -87,8 +87,8 @@ router.put('/:id', (req, res) => {
         })
 });
 
-// Adds a kickstarter to the user id passed
-router.delete('/user/:id', (req, res) => {
+// Deletes a kickstarter
+router.delete('/:id', (req, res) => {
     let { id } = req.params;
 
     kick.remove(id)
