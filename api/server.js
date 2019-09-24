@@ -16,7 +16,6 @@ server.get('/', (req, res) => {
     res.status(200).json({ api: 'up' })
 })
 
-
 server.use('/api/auth', authRouter);
 server.use('/api/kickstarter', authenticate, kickRouter);
 

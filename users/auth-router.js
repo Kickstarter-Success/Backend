@@ -10,7 +10,7 @@ const Kick = require('../kickstarter/kick-helpers')
 router.get('/', restricted, (req, res) => {
     Users.find()
         .then(users => { res.status(201).json(users) })
-        .catch(error => { res.status(500).json(error) })
+        .catch(error => { res.status(404).json(error) })
 })
 
 // Show one User by ID
@@ -69,7 +69,7 @@ router.delete('/delete/:id', restricted, (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ error: 'The user could not be removed.' })
+            res.status(401).json({ error: 'The user could not be removed.' })
         })
 })
 
@@ -82,7 +82,7 @@ router.post('/register', (req, res) => {
 
     Users.add(user)
         .then(saved => { res.status(201).json(saved) })
-        .catch(error => { res.status(500).json(error) })
+        .catch(error => { res.status(400).json({ "message": "Invalid Login, please try again." }) })
 });
 
 // Login with an existing User
