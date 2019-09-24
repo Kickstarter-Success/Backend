@@ -19,10 +19,11 @@ exports.up = function (knex) {
 
             data.increments()
 
-            data.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
+            data.integer('user_id')
+                .unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE')
 
             data
-                .string('campaignName', 128)
+                .string('campaignName')
                 .notNullable().unique()
 
             data
