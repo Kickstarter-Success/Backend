@@ -25,7 +25,6 @@ router.get('/:id', restricted, (req, res) => {
                     userFull.kickstarter = kicks;
                     res.status(200).json(userFull)
                 })
-
         })
         .catch(error => { res.status(500).json(error) })
 })
