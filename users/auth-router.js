@@ -96,7 +96,7 @@ router.post('/login', (req, res) => {
 
 
 
-                res.status(200).json(user, token)
+                res.status(200).json(token)
             } else {
                 res.status(401).json({ message: 'Invalid Credentials' })
             }
