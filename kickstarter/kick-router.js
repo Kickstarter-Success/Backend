@@ -56,27 +56,17 @@ router.post('/user/:id', (req, res) => {
         .then(saved => {
             // Currently built so that I can test the response, will flip it once I see that the 
             // data being returned is what I expect
-            axios.get('URLGOESHERE', kickstarter)
-                .then(response => {
-                    res.status(200).json(response.data.results);
-                })
-                .catch(err => {
-                    res.status(500).json({ message: 'Error Fetching Jokes', error: err });
-                });
+            // axios.get('URLGOESHERE', kickstarter)
+            //     .then(response => {
+            //         res.status(200).json(response.data.results);
+            //     })
+            //     .catch(err => {
+            //         res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+            //     });
+            res.status(201).json(saved)
         })
         .catch(error => { res.status(401).json({ message: 'Unable to save to the database and DS not queried.' }) })
 });
-
-// router.get('/test/test', (req, res) => {
-//     kick.getTasks()
-//         .then(e => {
-//             res.status(200).json(e)
-//         })
-//         .catch(err => {
-//             res.json({ message: 'What the hell' })
-//         })
-// })
-
 
 // Updates a kickstarter
 router.put('/:id', (req, res) => {
