@@ -65,7 +65,6 @@ router.post('/user/:id', (req, res) => {
                 });
         })
         .catch(error => { res.status(401).json({ message: 'Unable to save to the database and DS not queried.' }) })
-
 });
 
 // router.get('/test/test', (req, res) => {
