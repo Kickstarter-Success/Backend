@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const axios = require('axios');
 
 const kick = require('./kick-helpers.js')
 // Gets all Kickstarters
@@ -52,9 +53,18 @@ router.post('/user/:id', (req, res) => {
 
     // FE 
     kick.add(kickstarter)
-        .then(saved => { res.status(201).json(saved) })
-        .catch(error => { res.status(401).json({ message: 'What is going wrong!' }) })
-
+        .then(saved => {
+            // Currently built so that I can test the response, will flip it once I see that the 
+            // data being returned is what I expect
+            axios.get('URLGOESHERE', kickstarter)
+                .then(response => {
+                    res.status(200).json(response.data.results);
+                })
+                .catch(err => {
+                    res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+                });
+        })
+        .catch(error => { res.status(401).json({ message: 'Unable to save to the database and DS not queried.' }) })
 });
 
 // router.get('/test/test', (req, res) => {
