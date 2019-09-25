@@ -50,19 +50,10 @@ router.get('/user/:id', (req, res) => {
 router.post('/user/:id', (req, res) => {
     let kickstarter = req.body;
 
+    // FE 
     kick.add(kickstarter)
         .then(saved => { res.status(201).json(saved) })
         .catch(error => { res.status(401).json({ message: 'What is going wrong!' }) })
-
-
-
-    // if (check.id == kickstarter.user_id) {
-    //     kick.add(kickstarter)
-    //         .then(saved => { res.status(201).json(saved) })
-    //         .catch(error => { res.status(500).json(error) })
-    // } else {
-    //     res.status(401).json({ message: 'The UserID that you sent much match the user_id' })
-    // }
 
 });
 
