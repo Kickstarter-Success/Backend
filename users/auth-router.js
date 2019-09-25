@@ -78,7 +78,7 @@ router.post('/register', (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8);
     user.password = hash;
-
+    user.username = user.username.toLowerCase()
     Users.add(user)
         .then(saved => { res.status(201).json(saved) })
         .catch(error => { res.status(400).json({ "message": "Invalid Login, please try again." }) })
@@ -88,7 +88,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     // implement login
     let { username, password } = req.body;
-
+    username = username.toLowerCase()
     Users.findBy({ username }).first()
         .then(user => {
             if (user && bcrypt.compareSync(password, user.password)) {
