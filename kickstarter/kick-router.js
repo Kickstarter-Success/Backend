@@ -57,7 +57,7 @@ router.get('/visualizations', (req, res) => {
         categories: 96,
         country: 0
     }
-    axios.post('kickstarter-success.herokuapp.com//visualizations', objectThing)
+    axios.post('kickstarter-success.herokuapp.com/visualizations', objectThing)
         .then(response => {
             res.status(200).json(response.data)
         })
