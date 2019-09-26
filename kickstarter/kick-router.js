@@ -47,19 +47,25 @@ const kick = require('./kick-helpers.js')
 //         })
 // });
 
-router.get('/DS', (req, res) => {
-    const requestOptions = {
-        headers: { accept: 'application/json' },
-    };
+router.post('/DS', (req, res) => {
 
-    axios
-        .get('https://icanhazdadjoke.com/search', requestOptions)
+    let sanity = {
+        campaignName: "Test_Of_New_End_Point",
+        monetaryGoal: 100000,
+        description: "Put the decription here and bla bla bla.",
+        duration: 30,
+        categories: 96,
+        country: 0
+    }
+
+    axios.post('kickstarter-success.herokuapp.com', sanity)
         .then(response => {
-            res.status(200).json(response.data.results);
+            res.status(200).json(response.data)
         })
         .catch(err => {
-            res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+            res.status(500).json(err);
         });
+
 });
 
 
