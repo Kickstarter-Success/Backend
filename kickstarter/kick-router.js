@@ -48,7 +48,8 @@ router.get('/user/:id', (req, res) => {
 });
 
 router.get('/visualizations', (req, res) => {
-    res.status(200).json({ url: 'https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html' })
+    let url = { url: 'https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html' }
+    res.send(JSON.stringify(url))
 
 });
 
