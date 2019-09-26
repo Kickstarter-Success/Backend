@@ -47,7 +47,7 @@ const kick = require('./kick-helpers.js')
 //         })
 // });
 
-router.post('/DS', (req, res) => {
+router.get('/DS', (req, res) => {
 
     axios.post('kickstarter-success.herokuapp.com', {
         campaignName: "Test_Of_New_End_Point",
