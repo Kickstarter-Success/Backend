@@ -68,8 +68,7 @@ router.post('/DS', (req, res) => {
         headers: { accept: 'application/json' },
     };
 
-    axios
-        .get('https://icanhazdadjoke.com/search', requestOptions)
+    axios.get('https://icanhazdadjoke.com/search', requestOptions)
         .then(response => {
             res.status(200).json(response.data.results);
         })
