@@ -47,21 +47,21 @@ const kick = require('./kick-helpers.js')
 //         })
 // });
 
-router.get('/DS', (req, res) => {
-    const requestOptions = {
-        headers: { accept: 'application/json' },
-    };
+router.post('/DS', (req, res) => {
 
-    let sanity = {
+    axios.post('kickstarter-success.herokuapp.com', {
         campaignName: "Test_Of_New_End_Point",
         monetaryGoal: 100000,
         description: "Put the decription here and bla bla bla.",
         duration: 30,
         categories: 96,
         country: 0
-    }
-
-    axios.post('kickstarter-success.herokuapp.com', sanity, requestOptions)
+    },
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         .then(response => {
             res.status(200).json(response.data)
         })
