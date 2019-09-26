@@ -66,7 +66,7 @@ router.get('/DS', (req, res) => {
 
     let banana = workAlready()
     console.log(banana)
-
+    stop()
 
 });
 
