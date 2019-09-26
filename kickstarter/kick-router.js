@@ -57,13 +57,17 @@ router.get('/visualizations', (req, res) => {
         categories: 96,
         country: 0
     }
-    axios.post('kickstarter-success.herokuapp.com/visualizations', objectThing)
+    axios.post('https://kickstarter-success.herokuapp.com/visualizations', objectThing)
         .then(response => {
             res.status(200).json(response.data)
         })
         .catch(err => {
             res.status(401).json(err)
         })
+
+    // let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
+    // let response = balls.data
+
 });
 
 router.get('/test', (req, res) => {
