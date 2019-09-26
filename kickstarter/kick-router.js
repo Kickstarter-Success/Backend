@@ -63,6 +63,10 @@ router.get('/DS', (req, res) => {
 router.post('/user/:id', async function (req, res) {
 
     let kickstarter = req.body;
+
+    temp1 = kickstarter.country;
+    temp2 = kickstarter.country;
+
     kickstarter.country = 0;
     kickstarter.categories = 101;
 
@@ -76,6 +80,9 @@ router.post('/user/:id', async function (req, res) {
     let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
     let response = balls.data
     // Sends only the required info to DS
+    kickstarter.country = temp1;
+    kickstarter.categories = temp2;
+
     kickstarter.results = response.results;
     kickstarter.raising_more_success = response.custom_stats.raising_more_success;
     kickstarter.category_success = response.custom_stats.category_success;
