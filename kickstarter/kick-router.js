@@ -67,7 +67,7 @@ router.post('/DS', (req, res) => {
 
 
     axios
-        .get('https://icanhazdadjoke.com/search', requestOptions)
+        .get('https://icanhazdadjoke.com/search')
         .then(response => {
             res.status(200).json(response.data.results);
         })
