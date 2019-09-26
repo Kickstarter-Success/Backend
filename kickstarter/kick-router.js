@@ -80,7 +80,7 @@ router.post('/user/:id', (req, res) => {
     }
 
 
-    axios.post('http://kickstarter-success.herokuapp.com', json.stringify(sanity)) // Sends only the required info to DS
+    axios.post('http://kickstarter-success.herokuapp.com', JSON.stringify(sanity)) // Sends only the required info to DS
         .then(response => {
             // kickstarter.results = response.results;
             // kickstarter.raising_more_success = response.custom_stats.raising_more_success;
