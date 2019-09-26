@@ -61,53 +61,37 @@ const kick = require('./kick-helpers.js')
 
 // Adds a kickstarter to the user id passed
 router.post('/user/:id', async function (req, res) {
-    // const url = 'https://kickstarter-success.herokuapp.com'
+
+    let kickstarter = req.body;
+    let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
+    // Function that translates country into a number value {country}
+    // Function that translates categories into a number value {categories}
+    let package = { campaignName, monetaryGoal, description, duration, categories, country }
+    console.log(package)
 
 
-    // let kickstarter = req.body;
-    // let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
-    // // Function that translates country into a number value {country}
-    // // Function that translates categories into a number value {categories}
-    // let package = { campaignName, monetaryGoal, description, duration, categories, country }
-    // console.log(package)
-
-
-
-    let balls = await axios.post('https://kickstarter-success.herokuapp.com', {
-        campaignName: "Test_Of_New_End_Point",
-        monetaryGoal: 100000,
-        description: "Put the decription here and bla bla bla.",
-        duration: 30,
-        categories: 96,
-        country: 0
-    })
-    console.log(balls.data)
-    res.status(200).json(balls.data)
-
+    let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
+    let response = balls.data
     // Sends only the required info to DS
-    // .then(response => {
-    //     // kickstarter.results = response.results;
-    //     // kickstarter.raising_more_success = response.custom_stats.raising_more_success;
-    //     // kickstarter.category_successs = response.custom_stats.category_success;
-    //     // kickstarter.category_average = response.custom_stats.category_average;
-    //     // kickstarter.average_duration = response.custom_stats.average_duration;
-    //     // kickstarter.average_backers = response.custom_stats.average_backers;
-    //     // kickstarter.average_over = response.custom_stats.average_over;
-    //     // Adds all custom DS data onto my kickstarter table
-    //     // kick.add(kickstarter) // Saves all the info into the Table to be recalled later
-    //     //     .then(saved => {
-    //     //         res.status(201).json(saved)
-    //     //     })
-    //     //     .catch(err => {
-    //     //         res.status(401).json(err)
-    //     //     })
-    //     res.status(200).json(response)
-    //     console.log(response)
-    // })
-    // .catch(err => {
-    //     res.status(500).json(err);
-    // });
+    kickstarter.results = response.results;
+    kickstarter.raising_more_success = response.custom_stats.raising_more_success;
+    kickstarter.category_successs = response.custom_stats.category_success;
+    kickstarter.category_average = response.custom_stats.category_average;
+    kickstarter.average_duration = response.custom_stats.average_duration;
+    kickstarter.average_backers = response.custom_stats.average_backers;
+    kickstarter.average_over = response.custom_stats.average_over;
+
+    // Adds all custom DS data onto my kickstarter table
+    kick.add(kickstarter) // Saves all the info into the Table to be recalled later
+        .then(saved => {
+            res.status(201).json(saved)
+        })
+        .catch(err => {
+            res.status(401).json(err)
+        })
+
 })
+
 
 // // Updates a kickstarter
 // router.put('/:id', (req, res) => {
