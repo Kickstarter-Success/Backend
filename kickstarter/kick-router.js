@@ -48,11 +48,10 @@ const kick = require('./kick-helpers.js')
 // });
 
 router.get('/DS', (req, res) => {
-
     async function handler(req, res) {
         let response
         try {
-            response = await axios.post('kickstarter-success.herokuapp.com', {
+            response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
                 campaignName: "Test_Of_New_End_Point",
                 monetaryGoal: 100000,
                 description: "Put the decription here and bla bla bla.",
@@ -74,8 +73,6 @@ router.get('/DS', (req, res) => {
         .catch(err => {
             res.status(404).json(err)
         })
-
-
 });
 
 
