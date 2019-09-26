@@ -50,53 +50,63 @@ router.get('/user/:id', (req, res) => {
 // Adds a kickstarter to the user id passed
 router.post('/user/:id', (req, res) => {
     let kickstarter = req.body;
+    let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
+    // Function that translates country into a number value {country}
+    // Function that translates categories into a number value {categories}
+    let package = { campaignName, monetaryGoal, description, duration, categories, country }
 
-    // FE 
-    kick.add(kickstarter)
-        .then(saved => {
-            // Currently built so that I can test the response, will flip it once I see that the 
-            // data being returned is what I expect
-            // axios.get('URLGOESHERE', kickstarter)
-            //     .then(response => {
-            //         res.status(200).json(response.data.results);
-            //     })
-            //     .catch(err => {
-            //         res.status(500).json({ message: 'Error Fetching Jokes', error: err });
-            //     });
-            res.status(201).json(saved)
-        })
-        .catch(error => { res.status(401).json({ message: 'Unable to save to the database and DS not queried.' }) })
-});
+    axios.get('kickstarter-success.herokuapp.com', package) // Sends only the required info to DS
+        .then(response => {
+            kickstarter.results = response.results;
+            kickstarter.raising_more_success = response.custom_stats.raising_more_success;
+            kickstarter.category_successs = response.custom_stats.category_success;
+            kickstarter.category_average = response.custom_stats.category_average;
+            kickstarter.average_duration = response.custom_stats.average_duration;
+            kickstarter.average_backers = response.custom_stats.average_backers;
+            kickstarter.average_over = response.custom_stats.average_over;
+            // Adds all custom DS data onto my kickstarter table
+            kick.add(kickstarter) // Saves all the info into the Table to be recalled later
+                .then(saved => {
+                    res.status(201).json(saved)
+                })
+                .catch(err => {
+                    res.status(401).json(err)
+                })
 
-// Updates a kickstarter
-router.put('/:id', (req, res) => {
-    let { id } = req.params;
-    let updatedUser = req.body;
-
-    // Add some checks, make sure they can't change the user_id
-    kick.update(id, updatedUser)
-        .then(updated => {
-            res.status(201).json(updated)
-        })
-        .catch(error => {
-            res.status(400).json(error)
-        })
-});
-
-// Deletes a kickstarter
-router.delete('/:id', (req, res) => {
-    let { id } = req.params;
-
-    kick.remove(id)
-        .then(event => {
-            if (event) {
-                res.status(204).json({ message: `Kickstarter ID:${id} removed` })
-            } else {
-                res.status(404).json({ message: 'Kickstarter not found' })
-            }
         })
         .catch(err => {
-            res.status(500).json({ error: 'The Kickstarter could not be removed.' })
-        })
-});
-module.exports = router;
+            res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+        });
+
+    // Updates a kickstarter
+    router.put('/:id', (req, res) => {
+        let { id } = req.params;
+        let updatedUser = req.body;
+
+        // Add some checks, make sure they can't change the user_id
+        kick.update(id, updatedUser)
+            .then(updated => {
+                res.status(201).json(updated)
+            })
+            .catch(error => {
+                res.status(400).json(error)
+            })
+    });
+
+    // Deletes a kickstarter
+    router.delete('/:id', (req, res) => {
+        let { id } = req.params;
+
+        kick.remove(id)
+            .then(event => {
+                if (event) {
+                    res.status(204).json({ message: `Kickstarter ID:${id} removed` })
+                } else {
+                    res.status(404).json({ message: 'Kickstarter not found' })
+                }
+            })
+            .catch(err => {
+                res.status(500).json({ error: 'The Kickstarter could not be removed.' })
+            })
+    });
+    module.exports = router;

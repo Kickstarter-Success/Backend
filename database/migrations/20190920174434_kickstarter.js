@@ -24,10 +24,10 @@ exports.up = function (knex) {
 
             data
                 .string('campaignName')
-                .notNullable().unique()
+                .notNullable()
 
             data
-                .string('categories')
+                .integer('categories')
                 .notNullable()
 
             data
@@ -43,8 +43,26 @@ exports.up = function (knex) {
                 .notNullable()
 
             data
-                .string('country')
+                .integer('country')
                 .notNullable()
+
+            data
+                .integer('results')
+
+            data
+                .integer('raising_more_success')
+
+            data
+                .string('category_success')
+
+            data
+                .string('category_average')
+            data
+                .string('average_duration')
+            data
+                .string('average_backers')
+            data
+                .string('average_over')
 
         })
 };
