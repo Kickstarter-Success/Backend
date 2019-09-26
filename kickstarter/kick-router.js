@@ -60,7 +60,7 @@ const kick = require('./kick-helpers.js')
 // });
 
 // Adds a kickstarter to the user id passed
-router.post('/user/:id', (req, res) => {
+router.post('/user/:id', async function (req, res) {
     // const url = 'https://kickstarter-success.herokuapp.com'
 
 
@@ -70,17 +70,17 @@ router.post('/user/:id', (req, res) => {
     // // Function that translates categories into a number value {categories}
     // let package = { campaignName, monetaryGoal, description, duration, categories, country }
     // console.log(package)
-    let sanity = {
+
+
+
+    await axios.post('http://kickstarter-success.herokuapp.com', JSON.stringify({
         campaignName: "Test_Of_New_End_Point",
         monetaryGoal: 100000,
         description: "Put the decription here and bla bla bla.",
         duration: 30,
         categories: 96,
         country: 0
-    }
-
-
-    axios.post('http://kickstarter-success.herokuapp.com', JSON.stringify(sanity)) // Sends only the required info to DS
+    })) // Sends only the required info to DS
         .then(response => {
             // kickstarter.results = response.results;
             // kickstarter.raising_more_success = response.custom_stats.raising_more_success;
