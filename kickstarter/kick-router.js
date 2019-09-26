@@ -80,6 +80,7 @@ router.post('/user/:id', async function (req, res) {
     kickstarter.average_duration = response.custom_stats.average_duration;
     kickstarter.average_backers = response.custom_stats.average_backers;
     kickstarter.average_over = response.custom_stats.average_over;
+    console.log(kickstarter)
 
     // Adds all custom DS data onto my kickstarter table
     kick.add(kickstarter) // Saves all the info into the Table to be recalled later
