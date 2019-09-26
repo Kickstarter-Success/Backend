@@ -64,10 +64,12 @@ router.post('/DS', (req, res) => {
     //     .catch(err => {
     //         res.status(500).json(err);
     //     });
-
+    const requestOptions = {
+        headers: { accept: 'application/json' },
+    };
 
     axios
-        .get('https://icanhazdadjoke.com/search')
+        .get('https://icanhazdadjoke.com/search', requestOptions)
         .then(response => {
             res.status(200).json(response.data.results);
         })
