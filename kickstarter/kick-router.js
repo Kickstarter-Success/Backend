@@ -47,17 +47,17 @@ const kick = require('./kick-helpers.js')
 //         })
 // });
 
-router.get('/DS', (req, res) => {
+// router.get('/DS', (req, res) => {
 
-    axios.post('http://dummy.restapiexample.com/api/v1/create', {
-        "name": "tsdfasdasdsdfst", "salary": "123", "age": "23", "id": "719"
-    }).then(response => {
-        res.status(200).json(response.data);
-    })
-        .catch(err => {
-            res.status(500).json({ message: 'Error Fetching Jokes', error: err });
-        });
-});
+//     axios.post('http://dummy.restapiexample.com/api/v1/create', {
+//         "name": "tsdfasdasdsdfst", "salary": "123", "age": "23", "id": "719"
+//     }).then(response => {
+//         res.status(200).json(response.data);
+//     })
+//         .catch(err => {
+//             res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+//         });
+// });
 
 // Adds a kickstarter to the user id passed
 router.post('/user/:id', (req, res) => {
@@ -79,7 +79,8 @@ router.post('/user/:id', (req, res) => {
         country: 0
     }
 
-    axios.post('kickstarter-success.herokuapp.com', sanity) // Sends only the required info to DS
+
+    axios.post('http://kickstarter-success.herokuapp.com', json.stringify(sanity)) // Sends only the required info to DS
         .then(response => {
             // kickstarter.results = response.results;
             // kickstarter.raising_more_success = response.custom_stats.raising_more_success;
