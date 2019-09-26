@@ -1,51 +1,51 @@
 const axios = require('axios');
 const router = require('express').Router();
 
-const kick = require('./kick-helpers.js')
-// Gets all Kickstarters
-router.get('/all', (req, res) => {
-    kick.getAll()
-        .then(kick => {
-            res.status(200).json(kick)
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Failed to get kickstarters' })
-        })
-});
+// const kick = require('./kick-helpers.js')
+// // Gets all Kickstarters
+// router.get('/all', (req, res) => {
+//     kick.getAll()
+//         .then(kick => {
+//             res.status(200).json(kick)
+//         })
+//         .catch(err => {
+//             res.status(500).json({ message: 'Failed to get kickstarters' })
+//         })
+// });
 
-// Grabs a singular Kickstarter
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
+// // Grabs a singular Kickstarter
+// router.get('/:id', (req, res) => {
+//     const { id } = req.params;
 
-    kick.getKickById(id)
-        .then(kicks => {
-            if (kicks) {
-                res.status(200).json(kicks)
-            } else {
-                res.status(404).json({ message: 'Could not find kickstarters with that ID' })
-            }
-        })
-        .catch(err => {
-            res.status(500).json(err)
-        })
-})
+//     kick.getKickById(id)
+//         .then(kicks => {
+//             if (kicks) {
+//                 res.status(200).json(kicks)
+//             } else {
+//                 res.status(404).json({ message: 'Could not find kickstarters with that ID' })
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).json(err)
+//         })
+// })
 
-// Grabs all Kickstarters for a particular User 
-router.get('/user/:id', (req, res) => {
-    const { id } = req.params;
+// // Grabs all Kickstarters for a particular User 
+// router.get('/user/:id', (req, res) => {
+//     const { id } = req.params;
 
-    kick.getKickByUserId(id)
-        .then(kicks => {
-            if (kicks.length) {
-                res.status(200).json(kicks)
-            } else {
-                res.status(404).json({ message: 'Could not find kickstarters with that ID' })
-            }
-        })
-        .catch(err => {
-            res.status(500).json(err)
-        })
-});
+//     kick.getKickByUserId(id)
+//         .then(kicks => {
+//             if (kicks.length) {
+//                 res.status(200).json(kicks)
+//             } else {
+//                 res.status(404).json({ message: 'Could not find kickstarters with that ID' })
+//             }
+//         })
+//         .catch(err => {
+//             res.status(500).json(err)
+//         })
+// });
 
 router.get('/visualizations', (req, res) => {
     const objectThing = {
@@ -150,11 +150,11 @@ router.delete('/:id', (req, res) => {
 // const numToStringCountry = (object) => {
 //     const countriesStrings = ["United States", "Great Britain", "Australia", "Spain", "France", "Canada", "Germany", "Italiy", "Netherlands", "Switzerland", "Denmark", "Norway", "Ireland", "Sweden", "Belgium", "Austria", "New Zealand", "Luxembourg", "Singapore", "Mexico", "Hong Kong", "Japan"]
 
-
 //     const countries = {
 //         'United States': 0, 'Great Britain': 1, 'Australia': 2, 'Spain': 3, 'France': 4, 'Canada': 5, 'Germany': 6,
 //         'Italiy': 7, 'Netherlands': 8, 'Switzerland': 9, 'Denmark': 10, 'Norway': 11, 'Ireland': 12, 'Sweden': 13, 'Belgium': 14, 'Austria': 15, 'New Zealand': 16, 'Luxembourg': 17, 'Singapore': 18, 'Mexico': 19, 'Hong Kong': 20, 'Japan': 21
 //     }
+
 //     return countriesStrings.map(string => {
 //         if (countries.string === object.country) {
 //             return string;
