@@ -47,7 +47,7 @@ router.get('/user/:id', (req, res) => {
         })
 });
 
-router.get('/visualizations', (req, res) => {
+router.get('/visualizations', async function (req, res) {
     const objectThing = {
         user_id: 1,
         campaignName: "Test_Of_New_End_Point",
@@ -57,17 +57,9 @@ router.get('/visualizations', (req, res) => {
         categories: 96,
         country: 0
     }
-    axios.post('https://kickstarter-success.herokuapp.com/visualizations', objectThing)
-        .then(response => {
-            res.status(200).json(response.data)
-        })
-        .catch(err => {
-            res.status(401).json(err)
-        })
-
-    // let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
-    // let response = balls.data
-
+    let balls = await axios.post('https://kickstarter-success.herokuapp.com/visualizations', objectThing)
+    let response = balls.data
+    res.status(200).json(response)
 });
 
 router.get('/test', (req, res) => {
