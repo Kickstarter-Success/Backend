@@ -47,7 +47,10 @@ const kick = require('./kick-helpers.js')
 //         })
 // });
 
-router.post('/DS', (req, res) => {
+router.get('/DS', (req, res) => {
+    const requestOptions = {
+        headers: { accept: 'application/json' },
+    };
 
     let sanity = {
         campaignName: "Test_Of_New_End_Point",
@@ -58,14 +61,13 @@ router.post('/DS', (req, res) => {
         country: 0
     }
 
-    axios.post('kickstarter-success.herokuapp.com', sanity)
+    axios.post('kickstarter-success.herokuapp.com', sanity, requestOptions)
         .then(response => {
             res.status(200).json(response.data)
         })
         .catch(err => {
             res.status(500).json(err);
         });
-
 });
 
 
