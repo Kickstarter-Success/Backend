@@ -81,6 +81,7 @@ router.post('/user/:id', async function (req, res) {
         categories: 96,
         country: 0
     })
+    console.log(balls)
     res.status(200).json(balls)
 
     // Sends only the required info to DS
