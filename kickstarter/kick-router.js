@@ -1,5 +1,5 @@
-const router = require('express').Router();
 const axios = require('axios');
+const router = require('express').Router();
 
 const kick = require('./kick-helpers.js')
 // Gets all Kickstarters
@@ -47,35 +47,20 @@ router.get('/user/:id', (req, res) => {
         })
 });
 
-router.post('/DS', (req, res) => {
-    // let sanity = {
-    //     campaignName: "Test_Of_New_End_Point",
-    //     monetaryGoal: 100000,
-    //     description: "Put the decription here and bla bla bla.",
-    //     duration: 30,
-    //     categories: 96,
-    //     country: 0
-    // }
-
-    // axios.post('kickstarter-success.herokuapp.com') // Sends only the required info to DS
-    //     .then(response => {
-    //         res.status(200).json(response)
-    //     })
-    //     .catch(err => {
-    //         res.status(500).json(err);
-    //     });
+router.get('/DS', (req, res) => {
     const requestOptions = {
         headers: { accept: 'application/json' },
     };
 
-    axios.get('https://icanhazdadjoke.com/search', requestOptions)
+    axios
+        .get('https://icanhazdadjoke.com/search', requestOptions)
         .then(response => {
             res.status(200).json(response.data.results);
         })
         .catch(err => {
             res.status(500).json({ message: 'Error Fetching Jokes', error: err });
         });
-})
+});
 
 
 // Adds a kickstarter to the user id passed
