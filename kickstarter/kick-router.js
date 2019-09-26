@@ -1,7 +1,7 @@
 const axios = require('axios');
 const router = require('express').Router();
 
-// const kick = require('./kick-helpers.js')
+const kick = require('./kick-helpers.js')
 // // Gets all Kickstarters
 // router.get('/all', (req, res) => {
 //     kick.getAll()
