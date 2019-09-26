@@ -72,41 +72,44 @@ router.post('/user/:id', (req, res) => {
                 .catch(err => {
                     res.status(401).json(err)
                 })
-
         })
         .catch(err => {
             res.status(500).json({ message: 'Error Fetching Jokes', error: err });
         });
+})
 
-    // Updates a kickstarter
-    router.put('/:id', (req, res) => {
-        let { id } = req.params;
-        let updatedUser = req.body;
 
-        // Add some checks, make sure they can't change the user_id
-        kick.update(id, updatedUser)
-            .then(updated => {
-                res.status(201).json(updated)
-            })
-            .catch(error => {
-                res.status(400).json(error)
-            })
-    });
 
-    // Deletes a kickstarter
-    router.delete('/:id', (req, res) => {
-        let { id } = req.params;
+// Updates a kickstarter
+router.put('/:id', (req, res) => {
+    let { id } = req.params;
+    let updatedUser = req.body;
 
-        kick.remove(id)
-            .then(event => {
-                if (event) {
-                    res.status(204).json({ message: `Kickstarter ID:${id} removed` })
-                } else {
-                    res.status(404).json({ message: 'Kickstarter not found' })
-                }
-            })
-            .catch(err => {
-                res.status(500).json({ error: 'The Kickstarter could not be removed.' })
-            })
-    });
-    module.exports = router;
+    // Add some checks, make sure they can't change the user_id
+    kick.update(id, updatedUser)
+        .then(updated => {
+            res.status(201).json(updated)
+        })
+        .catch(error => {
+            res.status(400).json(error)
+        })
+});
+
+// Deletes a kickstarter
+router.delete('/:id', (req, res) => {
+    let { id } = req.params;
+
+    kick.remove(id)
+        .then(event => {
+            if (event) {
+                res.status(204).json({ message: `Kickstarter ID:${id} removed` })
+            } else {
+                res.status(404).json({ message: 'Kickstarter not found' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'The Kickstarter could not be removed.' })
+        })
+});
+
+module.exports = router;
