@@ -48,9 +48,7 @@ router.get('/user/:id', (req, res) => {
 });
 
 router.get('/visualizations', (req, res) => {
-    // let url = { url: '' }
-    res.send('https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html')
-
+    res.json({ url: 'https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html' })
 });
 
 // Adds a kickstarter to the user id passed
