@@ -47,8 +47,28 @@ router.get('/user/:id', (req, res) => {
         })
 });
 
+router.post('/DS', (req, res) => {
+    let sanity = {
+        campaignName: "Test_Of_New_End_Point",
+        monetaryGoal: 100000,
+        description: "Put the decription here and bla bla bla.",
+        duration: 30,
+        categories: 96,
+        country: 0
+    }
+
+    axios.post('kickstarter-success.herokuapp.com') // Sends only the required info to DS
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+})
+
+
 // Adds a kickstarter to the user id passed
-router.post('/banana', (req, res) => {
+router.post('/user/:id', (req, res) => {
     // const url = 'https://kickstarter-success.herokuapp.com'
 
 
@@ -91,8 +111,6 @@ router.post('/banana', (req, res) => {
             res.status(500).json(err);
         });
 })
-
-
 
 // Updates a kickstarter
 router.put('/:id', (req, res) => {
