@@ -48,25 +48,16 @@ const kick = require('./kick-helpers.js')
 // });
 
 router.get('/DS', (req, res) => {
-    async function handler(req, res) {
-        let response
-        try {
-            response = await axios.post('http://dummy.restapiexample.com/api/v1/create', { "name": "tsdfasdasdsdfst", "salary": "123", "age": "23", "id": "719" })
-            return response
-        } catch (err) {
-            return err
-        }
-    }
 
-    handler()
-        .then(load => {
-            res.status(201).json(load)
-        })
+    axios.post('http://dummy.restapiexample.com/api/v1/create', {
+        "name": "tsdfasdasdsdfst", "salary": "123", "age": "23", "id": "719"
+    }).then(response => {
+        res.status(200).json(response.data);
+    })
         .catch(err => {
-            res.status(404).json(err)
-        })
+            res.status(500).json({ message: 'Error Fetching Jokes', error: err });
+        });
 });
-
 
 // // Adds a kickstarter to the user id passed
 // router.post('/user/:id', (req, res) => {
