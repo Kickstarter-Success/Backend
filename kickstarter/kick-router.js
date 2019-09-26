@@ -75,7 +75,7 @@ router.post('/user/:id', async function (req, res) {
     // Sends only the required info to DS
     kickstarter.results = response.results;
     kickstarter.raising_more_success = response.custom_stats.raising_more_success;
-    kickstarter.category_successs = response.custom_stats.category_success;
+    kickstarter.category_success = response.custom_stats.category_success;
     kickstarter.category_average = response.custom_stats.category_average;
     kickstarter.average_duration = response.custom_stats.average_duration;
     kickstarter.average_backers = response.custom_stats.average_backers;
