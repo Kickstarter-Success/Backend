@@ -51,15 +51,7 @@ router.get('/DS', (req, res) => {
     async function handler(req, res) {
         let response
         try {
-            response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
-                campaignName: "Test_Of_New_End_Point",
-                monetaryGoal: 100000,
-                description: "Put the decription here and bla bla bla.",
-                duration: 30,
-                categories: 96,
-                country: 0
-
-            })
+            response = await axios.post('http://dummy.restapiexample.com/api/v1/create', { "name": "tsdfasdasdsdfst", "salary": "123", "age": "23", "id": "719" })
             return response
         } catch (err) {
             return err
