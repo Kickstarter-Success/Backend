@@ -61,13 +61,19 @@ router.get('/DS', (req, res) => {
                 country: 0
 
             })
-            return res.status(200).json(response)
+            return response
         } catch (err) {
-            return res.status(500).send()
+            return 'Error'
         }
     }
 
     handler()
+        .then(load => {
+            res.status(201).json(load)
+        })
+        .catch(err => {
+            res.status(404).json(err)
+        })
 
 
 });
