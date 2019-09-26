@@ -73,14 +73,14 @@ router.post('/user/:id', async function (req, res) {
 
 
 
-    let balls = await axios.post('http://kickstarter-success.herokuapp.com', JSON.stringify({
+    let balls = await axios.post('https://kickstarter-success.herokuapp.com', {
         campaignName: "Test_Of_New_End_Point",
         monetaryGoal: 100000,
         description: "Put the decription here and bla bla bla.",
         duration: 30,
         categories: 96,
         country: 0
-    }))
+    })
     res.status(200).json(balls)
 
     // Sends only the required info to DS
