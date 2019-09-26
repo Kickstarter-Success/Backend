@@ -80,8 +80,7 @@ router.post('/user/:id', async function (req, res) {
     let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
     let response = balls.data
     // Sends only the required info to DS
-    kickstarter.country = temp1;
-    kickstarter.categories = temp2;
+
 
     kickstarter.results = response.results;
     kickstarter.raising_more_success = response.custom_stats.raising_more_success;
@@ -95,6 +94,8 @@ router.post('/user/:id', async function (req, res) {
     // Adds all custom DS data onto my kickstarter table
     kick.add(kickstarter) // Saves all the info into the Table to be recalled later
         .then(saved => {
+            kickstarter.country = temp1;
+            kickstarter.categories = temp2;
             res.status(201).json(saved)
         })
         .catch(err => {
