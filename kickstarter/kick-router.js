@@ -47,16 +47,9 @@ router.get('/user/:id', (req, res) => {
         })
 });
 
-router.get('/DS', (req, res) => {
+router.get('/visualizations', (req, res) => {
+    res.status(200).json({ url: 'https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html' })
 
-    axios.post('http://dummy.restapiexample.com/api/v1/create', {
-        "name": "tsdfasdasdsdfst", "salary": "123", "age": "23", "id": "719"
-    }).then(response => {
-        res.status(200).json(response.data);
-    })
-        .catch(err => {
-            res.status(500).json({ message: 'Error Fetching Jokes', error: err });
-        });
 });
 
 // Adds a kickstarter to the user id passed
@@ -81,6 +74,7 @@ router.post('/user/:id', async function (req, res) {
     let response = balls.data
     // Sends only the required info to DS
 
+    // WRITE THE FUNCTION, WRITE THE ENDPOINT THAT GIVES THE URL, BUG DS FOR A FINISHED ENDPOINT
 
     kickstarter.results = response.results;
     kickstarter.raising_more_success = response.custom_stats.raising_more_success;
@@ -135,5 +129,25 @@ router.delete('/:id', (req, res) => {
             res.status(500).json({ error: 'The Kickstarter could not be removed.' })
         })
 });
+
+
+
+const numToStringCountry = (object) => {
+    const countriesStrings = ["United States", "Great Britain", "Australia", "Spain", "France", "Canada", "Germany", "Italiy", "Netherlands", "Switzerland", "Denmark", "Norway", "Ireland", "Sweden", "Belgium", "Austria", "New Zealand", "Luxembourg", "Singapore", "Mexico", "Hong Kong", "Japan"]
+
+
+    const countries = {
+        'United States': 0, 'Great Britain': 1, 'Australia': 2, 'Spain': 3, 'France': 4, 'Canada': 5, 'Germany': 6,
+        'Italiy': 7, 'Netherlands': 8, 'Switzerland': 9, 'Denmark': 10, 'Norway': 11, 'Ireland': 12, 'Sweden': 13, 'Belgium': 14, 'Austria': 15, 'New Zealand': 16, 'Luxembourg': 17, 'Singapore': 18, 'Mexico': 19, 'Hong Kong': 20, 'Japan': 21
+    }
+    return countriesStrings.map(string => {
+        if (countries.string === object.country) {
+            return string;
+        } else {
+            return console.log("numToStringCountry Function FAILED.")
+        }
+    })
+}
+
 
 module.exports = router;
