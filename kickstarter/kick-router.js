@@ -30,22 +30,22 @@ const router = require('express').Router();
 //         })
 // })
 
-// // Grabs all Kickstarters for a particular User 
-// router.get('/user/:id', (req, res) => {
-//     const { id } = req.params;
+// Grabs all Kickstarters for a particular User 
+router.get('/user/:id', (req, res) => {
+    const { id } = req.params;
 
-//     kick.getKickByUserId(id)
-//         .then(kicks => {
-//             if (kicks.length) {
-//                 res.status(200).json(kicks)
-//             } else {
-//                 res.status(404).json({ message: 'Could not find kickstarters with that ID' })
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).json(err)
-//         })
-// });
+    kick.getKickByUserId(id)
+        .then(kicks => {
+            if (kicks.length) {
+                res.status(200).json(kicks)
+            } else {
+                res.status(404).json({ message: 'Could not find kickstarters with that ID' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
+});
 
 router.get('/visualizations', (req, res) => {
     const objectThing = {
