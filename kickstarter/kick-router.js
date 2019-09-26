@@ -48,8 +48,8 @@ router.get('/user/:id', (req, res) => {
 });
 
 router.get('/visualizations', (req, res) => {
-    let url = { url: 'https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html' }
-    res.send(url)
+    // let url = { url: '' }
+    res.send('https://jbti-kickstarter-success.s3.us-east-2.amazonaws.com/visualizations/visual1-15.html')
 
 });
 
