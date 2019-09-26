@@ -47,21 +47,25 @@ const kick = require('./kick-helpers.js')
 //         })
 // });
 
-// router.get('/visualizations', async function (req, res) {
-//     const objectThing = {
-//         user_id: 1,
-//         campaignName: "Test_Of_New_End_Point",
-//         monetaryGoal: 100000,
-//         description: "Put the decription here and bla bla bla.",
-//         duration: 30,
-//         categories: 96,
-//         country: 0
-//     }
-//     let balls = await axios.post('https://kickstarter-success.herokuapp.com/visualizations', objectThing)
-//     let response = balls.data
-//     res.send(response)
+router.get('/visualizations', (req, res) => {
+    const objectThing = {
+        user_id: 1,
+        campaignName: "Test_Of_New_End_Point",
+        monetaryGoal: 100000,
+        description: "Put the decription here and bla bla bla.",
+        duration: 30,
+        categories: 96,
+        country: 0
+    }
+    axios.post('https://kickstarter-success.herokuapp.com/visualizations', objectThing)
+        .then(response => {
+            res.status(200).json(response.data)
+        })
+        .catch(err => {
+            res.status(401).json(err)
+        })
 
-// });
+});
 
 router.get('/test', (req, res) => {
     res.send({ hello: 'world' });
