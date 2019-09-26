@@ -63,11 +63,13 @@ router.get('/DS', (req, res) => {
 router.post('/user/:id', async function (req, res) {
 
     let kickstarter = req.body;
+    kickstarter.country = 0;
+    kickstarter.categories = 101;
+
     let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
     // Function that translates country into a number value {country}
     // Function that translates categories into a number value {categories}
-    categories = 108;
-    country = 0;
+
     let package = { campaignName, monetaryGoal, description, duration, categories, country }
     console.log(package)
 
