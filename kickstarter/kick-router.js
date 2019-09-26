@@ -63,7 +63,7 @@ router.get('/DS', (req, res) => {
             })
             return response
         } catch (err) {
-            return 'Error'
+            return err
         }
     }
 
