@@ -16,8 +16,10 @@ router.get('/visualizations/:id', (req, res) => {
             payload.monetaryGoal = event.monetaryGoal;
             payload.description = event.description;
             payload.duration = event.duration;
-            payload.categories = numToStringCategories(event);
-            payload.country = numToStringCountry(event);
+            payload.categories = event.categories;
+            payload.country = event.country;
+
+            console.log(payload)
 
             axios.post('https://kickstarter-success.herokuapp.com/visualizations', payload)
                 .then(response => {
