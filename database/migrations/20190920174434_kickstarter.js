@@ -63,7 +63,8 @@ exports.up = function (knex) {
                 .string('average_backers')
             data
                 .string('average_over')
-
+            data
+                .string('prediction_results')
         })
 };
 

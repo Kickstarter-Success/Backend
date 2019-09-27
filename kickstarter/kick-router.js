@@ -57,9 +57,15 @@ router.post('/user/:id', async function (req, res) {
     // Adds all custom DS data onto my kickstarter table
     kick.add(kickstarter) // Saves all the info into the Table to be recalled later
         .then(saved => {
-            saved.country = numToStringCountry(kickstarter)
-            saved.categories = numToStringCategories(kickstarter)
-            res.status(201).json(saved)
+            try {
+                saved.country = numToStringCountry(kickstarter)
+                saved.categories = numToStringCategories(kickstarter)
+                res.status(201).json(saved)
+            }
+            catch (err) {
+                console.log(err)
+                res.status(500).json({ message: 'It broke' })
+            }
         })
         .catch(err => {
             res.status(401).json(err)
