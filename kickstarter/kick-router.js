@@ -44,10 +44,10 @@ router.post('/user/:id', async function (req, res) {
 
     let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
 
-    let package = { campaignName, monetaryGoal, description, duration, categories, country }
-    console.log(package)
+    let load = { campaignName, monetaryGoal, description, duration, categories, country }
+    console.log(load)
 
-    let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
+    let balls = await axios.post('https://kickstarter-success.herokuapp.com', load)
     let response = balls.data
     // Sends only the required info to DS
 
@@ -92,10 +92,10 @@ router.put('/:id', async function (req, res) {
 
     let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
 
-    let package = { campaignName, monetaryGoal, description, duration, categories, country }
-    console.log(package)
+    let load = { campaignName, monetaryGoal, description, duration, categories, country }
+    console.log(load)
 
-    let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
+    let balls = await axios.post('https://kickstarter-success.herokuapp.com', load)
     let response = balls.data
     // Sends only the required info to DS
     kickstarter.prediction_results = response.prediction_results;
