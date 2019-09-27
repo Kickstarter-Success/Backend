@@ -121,6 +121,7 @@ router.get('/user/:id', (req, res) => {
                 let newKicks = kicks.map(element => {
                     element.categories = numToStringCategories(element)
                     element.country = numToStringCountry(element)
+                    return element;
                 })
                 res.status(200).json(newKicks)
             } else {
