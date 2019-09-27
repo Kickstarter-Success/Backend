@@ -34,8 +34,8 @@ router.post('/user/:id', async function (req, res) {
 
     const cStrings2 = ["United States", "Great Britain", "Australia", "Spain", "France", "Canada", "Germany", "Italy", "Netherlands", "Switzerland", "Denmark", "Norway", "Ireland", "Sweden", "Belgium", "Austria", "New Zealand", "Luxembourg", "Singapore", "Mexico", "Hong Kong", "Japan"]
 
-    let temp1 = cStrings1.indexOf(`${kickstarter.country}`)
-    let temp2 = cStrings2.indexOf(`${kickstarter.categories}`)
+    let temp1 = cStrings1.indexOf(kickstarter.country)
+    let temp2 = cStrings2.indexOf(kickstarter.categories)
 
     kickstarter.country = temp1
     kickstarter.categories = temp2
