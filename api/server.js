@@ -17,6 +17,6 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api/auth', authRouter);
-server.use('/api/kickstarter', authenticate, kickRouter);  // Removed authenticate for testing.
+server.use('/api/kickstarter', kickRouter);  // Removed authenticate for testing.
 
 module.exports = server;
