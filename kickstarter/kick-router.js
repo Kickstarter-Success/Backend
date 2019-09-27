@@ -344,7 +344,7 @@ function numToStringCountry(object1) {
     const cStrings = ["United States", "Great Britain", "Australia", "Spain", "France", "Canada", "Germany", "Italy", "Netherlands", "Switzerland", "Denmark", "Norway", "Ireland", "Sweden", "Belgium", "Austria", "New Zealand", "Luxembourg", "Singapore", "Mexico", "Hong Kong", "Japan"]
 
     const countries = {
-        'United States': 0, 'Great Britain': 1, 'Australia': 2, 'Spain': 3, 'France': 4, 'Canada': 5, 'Germany': 6, 'Italiy': 7, 'Netherlands': 8, 'Switzerland': 9, 'Denmark': 10, 'Norway': 11, 'Ireland': 12, 'Sweden': 13, 'Belgium': 14, 'Austria': 15, 'New Zealand': 16, 'Luxembourg': 17, 'Singapore': 18, 'Mexico': 19, 'Hong Kong': 20, 'Japan': 21
+        'United States': 0, 'Great Britain': 1, 'Australia': 2, 'Spain': 3, 'France': 4, 'Canada': 5, 'Germany': 6, 'Italy': 7, 'Netherlands': 8, 'Switzerland': 9, 'Denmark': 10, 'Norway': 11, 'Ireland': 12, 'Sweden': 13, 'Belgium': 14, 'Austria': 15, 'New Zealand': 16, 'Luxembourg': 17, 'Singapore': 18, 'Mexico': 19, 'Hong Kong': 20, 'Japan': 21
     }
     let temp = ''
 
