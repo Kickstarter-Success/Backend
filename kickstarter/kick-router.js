@@ -5,22 +5,30 @@ const kick = require('./kick-helpers.js')
 
 // Grabs all Kickstarters for a particular User 
 
-router.get('/visualizations', (req, res) => {
-    const objectThing = {
-        user_id: 1,
-        campaignName: "Test_Of_New_End_Point",
-        monetaryGoal: 100000,
-        description: "Put the decription here and bla bla bla.",
-        duration: 30,
-        categories: 96,
-        country: 0
-    }
-    axios.post('https://kickstarter-success.herokuapp.com/visualizations', objectThing)
-        .then(response => {
-            res.status(200).json(response.data)
+router.get('/visualizations/:id', (req, res) => {
+    let { id } = req.params;
+
+    kick.getKickById(id)
+        .then(event => {
+            let payload = {}
+            payload.user_id = event.user_id;
+            payload.campaignName = event.campaignName;
+            payload.monetaryGoal = event.monetaryGoal;
+            payload.description = event.description;
+            payload.duration = event.duration;
+            payload.categories = numToStringCategories(event);
+            payload.country = numToStringCountry(event);
+
+            axios.post('https://kickstarter-success.herokuapp.com/visualizations', payload)
+                .then(response => {
+                    res.status(200).json(response.data)
+                })
+                .catch(err => {
+                    res.status(401).json(err)
+                })
         })
         .catch(err => {
-            res.status(401).json(err)
+            res.status(500).json(err)
         })
 
 });
