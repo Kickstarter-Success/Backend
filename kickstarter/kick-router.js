@@ -31,11 +31,8 @@ router.post('/user/:id', async function (req, res) {
 
     kickstarter.country = numToStringCountry(kickstarter)
     kickstarter.categories = numToStringCategories(kickstarter)
-    console.log(numToStringCountry(kickstarter))
-    console.log(numToStringCategories(kickstarter))
+
     let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
-    // Function that translates country into a number value {country}
-    // Function that translates categories into a number value {categories}
 
     let package = { campaignName, monetaryGoal, description, duration, categories, country }
     console.log(package)
@@ -76,15 +73,32 @@ router.post('/user/:id', async function (req, res) {
 })
 
 // Updates a kickstarter
-router.put('/:id', (req, res) => {
+router.put('/:id', async function (req, res) {
     let { id } = req.params;
-    let updatedKick = req.body;
+    let kickstarter = req.body;
 
-    updatedKick.country = numToStringCountry(updatedKick)
-    updatedKick.categories = numToStringCategories(updatedKick)
+    kickstarter.country = numToStringCountry(kickstarter)
+    kickstarter.categories = numToStringCategories(kickstarter)
+
+    let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
+
+    let package = { campaignName, monetaryGoal, description, duration, categories, country }
+    console.log(package)
+
+    let balls = await axios.post('https://kickstarter-success.herokuapp.com', package)
+    let response = balls.data
+    // Sends only the required info to DS
+    kickstarter.prediction_results = response.prediction_results;
+    kickstarter.results = response.results;
+    kickstarter.raising_more_success = response.custom_stats.raising_more_success;
+    kickstarter.category_success = response.custom_stats.category_success;
+    kickstarter.category_average = response.custom_stats.category_average;
+    kickstarter.average_duration = response.custom_stats.average_duration;
+    kickstarter.average_backers = response.custom_stats.average_backers;
+    kickstarter.average_over = response.custom_stats.average_over;
 
     // Add some checks, make sure they can't change the user_id
-    kick.update(id, updatedKick)
+    kick.update(id, kickstarter)
         .then(updated => {
             updated.country = numToStringCountry(updated)
             updated.categories = numToStringCategories(updated)
