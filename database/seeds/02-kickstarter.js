@@ -14,7 +14,8 @@ exports.seed = function (knex, Promise) {
             average_duration: "34.6282",
             average_backers: "2582.9947",
             average_over: "66726.7648",
-            results: 1
+            results: 1,
+            prediction_results: 65
         },
         {
             user_id: 1,
@@ -30,7 +31,8 @@ exports.seed = function (knex, Promise) {
             average_duration: "34.6282",
             average_backers: "2582.9947",
             average_over: "66726.7648",
-            results: 0
+            results: 0,
+            prediction_results: 65
         },
         {
             user_id: 1,
@@ -46,7 +48,8 @@ exports.seed = function (knex, Promise) {
             average_duration: "34.6282",
             average_backers: "2582.9947",
             average_over: "66726.7648",
-            results: 1
+            results: 1,
+            prediction_results: 65
         },
         {
             user_id: 1,
@@ -62,7 +65,9 @@ exports.seed = function (knex, Promise) {
             average_duration: "34.6282",
             average_backers: "2582.9947",
             average_over: "66726.7648",
-            results: 1
+            results: 1,
+            prediction_results: 65
+
         }
     ])
 }
