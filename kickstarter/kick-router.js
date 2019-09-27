@@ -30,8 +30,14 @@ router.post('/user/:id', async function (req, res) {
 
     let kickstarter = req.body;
 
-    kickstarter.country = numToStringCountry(kickstarter)
-    kickstarter.categories = numToStringCategories(kickstarter)
+    const cStrings1 = ["Space Exploration", "Wearables", "Hardware", "Software", "Web", "Sound", "Children's Books", "Calendars", "Art Books", "Fiction", "Nature", "People", "Letterpress", "Literary Journals", "Nonfiction", "Footwear", "Jewelry", "Pet Fashion", "Ready-to-wear", "Apparel", "Animation", "Comedy", "Documentary", "Action", "Textiles", "Sculpture", "Public Art", "Performance Art", "Crafts", "DIY", "Woodworking", "Knitting", "Candles", "Quilts", "Glass", "Embroidery", "Crochet", "Pottery", "Product Design", "Graphic Design", "Design", "Typography", "Interactive Design", "Civic Design", "Architecture", "Shorts", "Narrative Film", "Film & Video", "Webseries", "Thrillers", "Family", "Experimental", "Science Fiction", "Fantasy", "Music Videos", "Horror", "Movie Theaters", "Drama", "Romance", "Television", "Festivals", "Food", "Small Batch", "Farmer's Markets", "Restaurants", "Farms", "Drinks", "Events", "Food Trucks", "Cookbooks", "Vegan", "Spaces", "Community Gardens", "Bacon", "Fashion", "Accessories", "Couture", "Childrenswear", "Places", "Digital Art", "Flight", "Graphic Novels", "Dance", "R&B", "Performances", "Gaming Hardware", "Mobile Games", "Gadgets", "Young Adult", "Illustration", "Translations", "Zines", "Weaving", "Ceramics", "Radio & Podcasts", "Immersive", "Technology", "Blues", "DIY Electronics", "Jazz", "Electronic Music", "Apps", "Camera Equipment", "Robots", "3D Printing", "Workshops", "Poetry", "Photobooks", "Photography", "World Music", "Mixed Media", "Residencies", "Fine Art", "Classical Music", "Printing", "Webcomics", "Animals", "Publishing", "Kids", "Academic", "Periodicals", "Anthologies", "Indie Rock", "Comic Books", "Games", "Tabletop Games", "Installations", "Conceptual Art", "Playing Cards", "Puzzles", "Metal", "Video Games", "Photo", "Pop", "Rock", "Country & Folk", "Print", "Video", "Latin", "Faith", "Art", "Painting", "Video Art", "Makerspaces", "Hip-Hop", "Music", "Stationery", "Punk", "Fabrication Tools", "Chiptune", "Musical", "Theater", "Comics", "Plays", "Journalism", "Audio", "Literary Spaces", "Live Games", "Taxidermy"]
+
+    const cStrings2 = ["United States", "Great Britain", "Australia", "Spain", "France", "Canada", "Germany", "Italy", "Netherlands", "Switzerland", "Denmark", "Norway", "Ireland", "Sweden", "Belgium", "Austria", "New Zealand", "Luxembourg", "Singapore", "Mexico", "Hong Kong", "Japan"]
+
+    kickstarter.country = cStrings1.indexOf(`${kickstarter.country}`)
+    kickstarter.categories = cStrings2.indexOf(`${kickstarter.categories}`)
+    // kickstarter.country = numToStringCountry(kickstarter)
+    // kickstarter.categories = numToStringCategories(kickstarter)
 
     let { campaignName, monetaryGoal, description, duration, categories, country } = kickstarter;
     // Function that translates country into a number value {country}
