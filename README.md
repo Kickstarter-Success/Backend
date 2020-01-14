@@ -1,4 +1,14 @@
-# Backend
+# Kickstarter Success - Backend Code by Timothy M. McGowen
+
+**Project Description**  
+    An application that takes machine learning data and inputs from the user to give reliable percentages of success for a potential Kickstarter project.
+    1. Created the backend using nodeJS, Express, Knex, MySQLite for development and PostgreSQL for deployment. 
+    2. Took data from the front end and the data machine learning API and parsed it into readable data for the user. 
+    3. Assisted in the front end state management and the construction of the marketing site. 
+
+
+
+
 ## Users
 Get User by ID  
 ```https://kickstarter-backend.herokuapp.com/api/auth/:id```  
